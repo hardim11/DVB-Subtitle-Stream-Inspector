@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F4B2D58-0153-4561-A6A1-8403C01D4018}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SubtitleMonitor</RootNamespace>
+    <AssemblyName>SubtitleMonitor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UtfUnknown, Version=2.0.0.0, Culture=neutral, PublicKeyToken=90217ce7a23260d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\UTF.Unknown.2.3.0\lib\net40\UtfUnknown.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IsoCountryCodes.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupPalette.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupParser.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupPicture.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\Core.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\ImageObjectFragment.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\PaletteInfo.cs" />
+    <Compile Include="SubtitleEdit\BluRaySup\ToolBox.cs" />
+    <Compile Include="SubtitleEdit\CharUtils.cs" />
+    <Compile Include="SubtitleEdit\Configuration.cs" />
+    <Compile Include="SubtitleEdit\DetectEncoding\EncodingTools.cs" />
+    <Compile Include="SubtitleEdit\DvdSubtitleLanguage.cs" />
+    <Compile Include="SubtitleEdit\Enums\SubtitleSortCriteria.cs" />
+    <Compile Include="SubtitleEdit\FastBitmap.cs" />
+    <Compile Include="SubtitleEdit\FastFileStream.cs" />
+    <Compile Include="SubtitleEdit\FileUtil.cs" />
+    <Compile Include="SubtitleEdit\HistoryItem.cs" />
+    <Compile Include="SubtitleEdit\HtmlUtil.cs" />
+    <Compile Include="SubtitleEdit\Interfaces\IBinaryParagraph.cs" />
+    <Compile Include="SubtitleEdit\Interfaces\IBinaryPersistableSubtitle.cs" />
+    <Compile Include="SubtitleEdit\LanguageAutoDetect.cs" />
+    <Compile Include="SubtitleEdit\NikseBitmap.cs" />
+    <Compile Include="SubtitleEdit\NoBreakAfterItem.cs" />
+    <Compile Include="SubtitleEdit\Paragraph.cs" />
+    <Compile Include="SubtitleEdit\PlainTextImporter.cs" />
+    <Compile Include="SubtitleEdit\Position.cs" />
+    <Compile Include="SubtitleEdit\RegistryUtil.cs" />
+    <Compile Include="SubtitleEdit\Settings.cs" />
+    <Compile Include="SubtitleEdit\StringExtensions.cs" />
+    <Compile Include="SubtitleEdit\Subtitle.cs" />
+    <Compile Include="SubtitleEdit\SubtitleFormats\SubtitleFormat.cs" />
+    <Compile Include="SubtitleEdit\TextEncoding.cs" />
+    <Compile Include="SubtitleEdit\TextSplit.cs" />
+    <Compile Include="SubtitleEdit\TextSplitResult.cs" />
+    <Compile Include="SubtitleEdit\TimeCode.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\AdaptationField.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ClutDefinitionSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\DisplayDefinitionSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\DvbSubPes.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\EbuPesDataField.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\EbuPesDataFieldText.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\EndOfDisplaySetSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\Helper.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ObjectDataSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\Packet.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\PacketizedElementaryStream.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\PageCompositionSegemnt.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\PageCompositionSegmentRegion.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ProgramAssociationTable.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ProgramMapTable.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ProgramMapTableDescriptor.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ProgramMapTableParser.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\ProgramMapTableStream.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\RegionClutSegmentEntry.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\RegionCompositionSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\RegionCompositionSegmentObject.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\SubtitleSegment.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\Teletext.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\TeletextHamming.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\TeletextRunSettings.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\TeletextTables.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\TransportStreamParser.cs" />
+    <Compile Include="SubtitleEdit\TransportStream\TransportStreamSubtitle.cs" />
+    <Compile Include="SubtitleEdit\Utilities.cs" />
+    <Compile Include="SubtitleEdit\VideoInfo.cs" />
+    <Compile Include="SubtitleEdit\VobSub\Helper.cs" />
+    <Compile Include="SubtitleEdit\VobSub\Idx.cs" />
+    <Compile Include="SubtitleEdit\VobSub\IdxParagraph.cs" />
+    <Compile Include="SubtitleEdit\VobSub\Mpeg2Header.cs" />
+    <Compile Include="SubtitleEdit\VobSub\PacketizedElementaryStream.cs" />
+    <Compile Include="SubtitleEdit\VobSub\SpHeader.cs" />
+    <Compile Include="SubtitleEdit\VobSub\SubPicture.cs" />
+    <Compile Include="SubtitleEdit\VobSub\VobSubMergedPack.cs" />
+    <Compile Include="SubtitleEdit\VobSub\VobSubPack.cs" />
+    <Compile Include="SubtitleEdit\VobSub\VobSubParser.cs" />
+    <Compile Include="SubtitleEdit\VobSub\VobSubWriter.cs" />
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
