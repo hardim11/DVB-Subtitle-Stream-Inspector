@@ -456,7 +456,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             {
                 if (ss.DisplayDefinition != null)
                 {
-                    width = ss.DisplayDefinition.DisplayWith;
+                    width = ss.DisplayDefinition.DisplayWidth;
                     height = ss.DisplayDefinition.DisplayHeight;
                 }
             }

@@ -28,59 +28,233 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.buttonTestFile1 = new System.Windows.Forms.Button();
+            this.buttonTestFile2 = new System.Windows.Forms.Button();
+            this.treeViewMain = new System.Windows.Forms.TreeView();
+            this.splitContainerMaIN = new System.Windows.Forms.SplitContainer();
+            this.listViewDetails = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
+            this.panelDescripton = new System.Windows.Forms.Panel();
+            this.textBoxDesc = new System.Windows.Forms.TextBox();
+            this.splitContainerDetails = new System.Windows.Forms.SplitContainer();
+            this.checkBoxCreateHTML = new System.Windows.Forms.CheckBox();
+            this.buttonOpenFile = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).BeginInit();
+            this.splitContainerMaIN.Panel1.SuspendLayout();
+            this.splitContainerMaIN.Panel2.SuspendLayout();
+            this.splitContainerMaIN.SuspendLayout();
+            this.panelDescripton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerDetails)).BeginInit();
+            this.splitContainerDetails.Panel1.SuspendLayout();
+            this.splitContainerDetails.Panel2.SuspendLayout();
+            this.splitContainerDetails.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonTestFile1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonTestFile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTestFile1.Location = new System.Drawing.Point(610, 41);
+            this.buttonTestFile1.Name = "buttonTestFile1";
+            this.buttonTestFile1.Size = new System.Drawing.Size(218, 23);
+            this.buttonTestFile1.TabIndex = 0;
+            this.buttonTestFile1.Text = "Test File 1";
+            this.buttonTestFile1.UseVisualStyleBackColor = true;
+            this.buttonTestFile1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // buttonTestFile2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 41);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(218, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonTestFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTestFile2.Location = new System.Drawing.Point(834, 41);
+            this.buttonTestFile2.Name = "buttonTestFile2";
+            this.buttonTestFile2.Size = new System.Drawing.Size(218, 23);
+            this.buttonTestFile2.TabIndex = 1;
+            this.buttonTestFile2.Text = "Test File 2";
+            this.buttonTestFile2.UseVisualStyleBackColor = true;
+            this.buttonTestFile2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // treeView1
+            // treeViewMain
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 88);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(218, 446);
-            this.treeView1.TabIndex = 2;
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewMain.HideSelection = false;
+            this.treeViewMain.Location = new System.Drawing.Point(0, 0);
+            this.treeViewMain.Name = "treeViewMain";
+            this.treeViewMain.Size = new System.Drawing.Size(346, 464);
+            this.treeViewMain.TabIndex = 2;
+            this.treeViewMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewMain_AfterSelect);
+            // 
+            // splitContainerMaIN
+            // 
+            this.splitContainerMaIN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainerMaIN.Location = new System.Drawing.Point(12, 70);
+            this.splitContainerMaIN.Name = "splitContainerMaIN";
+            // 
+            // splitContainerMaIN.Panel1
+            // 
+            this.splitContainerMaIN.Panel1.Controls.Add(this.treeViewMain);
+            // 
+            // splitContainerMaIN.Panel2
+            // 
+            this.splitContainerMaIN.Panel2.Controls.Add(this.splitContainerDetails);
+            this.splitContainerMaIN.Size = new System.Drawing.Size(1040, 464);
+            this.splitContainerMaIN.SplitterDistance = 346;
+            this.splitContainerMaIN.TabIndex = 3;
+            // 
+            // listViewDetails
+            // 
+            this.listViewDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listViewDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewDetails.FullRowSelect = true;
+            this.listViewDetails.HideSelection = false;
+            this.listViewDetails.Location = new System.Drawing.Point(0, 0);
+            this.listViewDetails.Name = "listViewDetails";
+            this.listViewDetails.ShowItemToolTips = true;
+            this.listViewDetails.Size = new System.Drawing.Size(690, 364);
+            this.listViewDetails.TabIndex = 0;
+            this.listViewDetails.UseCompatibleStateImageBehavior = false;
+            this.listViewDetails.View = System.Windows.Forms.View.Details;
+            this.listViewDetails.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewDetails_ItemSelectionChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Parameter";
+            this.columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Value";
+            this.columnHeader2.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Information";
+            this.columnHeader3.Width = 300;
+            // 
+            // progressBarLoading
+            // 
+            this.progressBarLoading.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBarLoading.Location = new System.Drawing.Point(258, 12);
+            this.progressBarLoading.Name = "progressBarLoading";
+            this.progressBarLoading.Size = new System.Drawing.Size(794, 23);
+            this.progressBarLoading.TabIndex = 4;
+            // 
+            // backgroundWorkerMain
+            // 
+            this.backgroundWorkerMain.WorkerReportsProgress = true;
+            this.backgroundWorkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMain_DoWork);
+            this.backgroundWorkerMain.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMain_ProgressChanged);
+            this.backgroundWorkerMain.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerMain_RunWorkerCompleted);
+            // 
+            // panelDescripton
+            // 
+            this.panelDescripton.Controls.Add(this.textBoxDesc);
+            this.panelDescripton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDescripton.Location = new System.Drawing.Point(0, 0);
+            this.panelDescripton.Name = "panelDescripton";
+            this.panelDescripton.Size = new System.Drawing.Size(690, 96);
+            this.panelDescripton.TabIndex = 1;
+            // 
+            // textBoxDesc
+            // 
+            this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDesc.Location = new System.Drawing.Point(0, 0);
+            this.textBoxDesc.Multiline = true;
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(690, 96);
+            this.textBoxDesc.TabIndex = 0;
+            // 
+            // splitContainerDetails
+            // 
+            this.splitContainerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerDetails.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerDetails.Name = "splitContainerDetails";
+            this.splitContainerDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerDetails.Panel1
+            // 
+            this.splitContainerDetails.Panel1.Controls.Add(this.listViewDetails);
+            // 
+            // splitContainerDetails.Panel2
+            // 
+            this.splitContainerDetails.Panel2.Controls.Add(this.panelDescripton);
+            this.splitContainerDetails.Size = new System.Drawing.Size(690, 464);
+            this.splitContainerDetails.SplitterDistance = 364;
+            this.splitContainerDetails.TabIndex = 2;
+            // 
+            // checkBoxCreateHTML
+            // 
+            this.checkBoxCreateHTML.AutoSize = true;
+            this.checkBoxCreateHTML.Location = new System.Drawing.Point(258, 45);
+            this.checkBoxCreateHTML.Name = "checkBoxCreateHTML";
+            this.checkBoxCreateHTML.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxCreateHTML.TabIndex = 5;
+            this.checkBoxCreateHTML.Text = "Create HTML Files";
+            this.checkBoxCreateHTML.UseVisualStyleBackColor = true;
+            // 
+            // buttonOpenFile
+            // 
+            this.buttonOpenFile.Location = new System.Drawing.Point(12, 12);
+            this.buttonOpenFile.Name = "buttonOpenFile";
+            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFile.TabIndex = 6;
+            this.buttonOpenFile.Text = "Open File";
+            this.buttonOpenFile.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 546);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonOpenFile);
+            this.Controls.Add(this.checkBoxCreateHTML);
+            this.Controls.Add(this.progressBarLoading);
+            this.Controls.Add(this.splitContainerMaIN);
+            this.Controls.Add(this.buttonTestFile2);
+            this.Controls.Add(this.buttonTestFile1);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DVB Subtitle Explorer";
+            this.splitContainerMaIN.Panel1.ResumeLayout(false);
+            this.splitContainerMaIN.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).EndInit();
+            this.splitContainerMaIN.ResumeLayout(false);
+            this.panelDescripton.ResumeLayout(false);
+            this.panelDescripton.PerformLayout();
+            this.splitContainerDetails.Panel1.ResumeLayout(false);
+            this.splitContainerDetails.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerDetails)).EndInit();
+            this.splitContainerDetails.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Button buttonTestFile1;
+        private System.Windows.Forms.Button buttonTestFile2;
+        private System.Windows.Forms.TreeView treeViewMain;
+        private System.Windows.Forms.SplitContainer splitContainerMaIN;
+        private System.Windows.Forms.ListView listViewDetails;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ProgressBar progressBarLoading;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerMain;
+        private System.Windows.Forms.Panel panelDescripton;
+        private System.Windows.Forms.TextBox textBoxDesc;
+        private System.Windows.Forms.SplitContainer splitContainerDetails;
+        private System.Windows.Forms.CheckBox checkBoxCreateHTML;
+        private System.Windows.Forms.Button buttonOpenFile;
     }
 }
 

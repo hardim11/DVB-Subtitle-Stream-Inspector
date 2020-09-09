@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using SubtitleMonitor;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
 {
@@ -12,6 +14,23 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
         /// 0x00 coding of pixels, 0x01 coded as a string of characters
         /// </summary>
         public int ObjectCodingMethod { get; set; }
+        public string ObjectCodingMethodString 
+        { 
+            get
+            {
+                switch (ObjectCodingMethod)
+                {
+                    case 0:
+                        return "coding of pixels";
+                    case 1:
+                        return "coded as a string of characters";
+                    case 2:
+                        return "progressive coding of pixels";
+                    default:
+                        return "unkonwn or reserved";
+                }
+            } 
+        }
 
         public bool NonModifyingColorFlag { get; set; }
 
@@ -40,8 +59,39 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             ObjectVersionNumber = buffer[index + 2] >> 4;
             ObjectCodingMethod = (buffer[index + 2] & 0b00001100) >> 2;
             NonModifyingColorFlag = (buffer[index + 2] & 0b00000010) > 0;
-            TopFieldDataBlockLength = Helper.GetEndianWord(buffer, index + 3);
-            BottomFieldDataBlockLength = Helper.GetEndianWord(buffer, index + 5);
+
+            switch (ObjectCodingMethod)
+            {
+                case 0: // interlaced bitmap
+                    TopFieldDataBlockLength = Helper.GetEndianWord(buffer, index + 3);
+                    BottomFieldDataBlockLength = Helper.GetEndianWord(buffer, index + 5);
+
+
+                    // get top field data
+                    //      loop pixel-data_sub-block() 
+
+                    // get bottom field data
+                    //      loop pixel-data_sub-block() 
+
+
+                    break;
+                case 1: // teletext
+                    NumberOfCodes = buffer[index + 3];
+
+
+                    // loop of character codes
+                    //      loop character_code 
+                    break;
+                case 2: //; progressive bitmap
+                        // get progressive_pixel_block()
+
+
+                default:
+                    break;
+            }
+
+            
+            
             BufferIndex = index;
         }
 
@@ -549,5 +599,69 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             return res;
         }
 
+
+        public void PopulateListViewDetails(ListView Lv)
+        {
+            Lv.Items.Clear();
+            ListViewGroup grpGeneral = Lv.Groups.Add("General", "General");
+
+            Utils.AddListViewEntry(
+                Lv,
+                "object_id",
+                this.ObjectId.ToString(),
+                "Uniquely identifies within the page the object for which data is contained in this object_data_segment field.",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "object_version_number",
+                this.ObjectVersionNumber.ToString(),
+                "Indicates the version of this segment data. When any of the contents of this segment change, this version number is incremented(modulo 16).",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "object_coding_method",
+                this.ObjectCodingMethod.ToString() + " (" + this.ObjectCodingMethodString + ")",
+                "Specifies the method used to code the object",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "non_modifying_colour_flag",
+                this.NonModifyingColorFlag.ToString(),
+                "If set to '1' this indicates that the CLUT entry value '1' is a non modifying colour. When the non modifying colour is assigned to an object pixel, then the pixel of the underlying region background or object shall not be modified.This can be used to create \"transparent holes\" in objects.",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "top_field_data_block_length",
+                this.TopFieldDataBlockLength.ToString(),
+                "Specifies the number of bytes contained in the pixel-data_sub-blocks for the top field (when coded as pixels)",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "bottom_field_data_block_length",
+                this.BottomFieldDataBlockLength.ToString(),
+                "Specifies the number of bytes contained in the data_sub-block for the bottom field (when coded as pixels)",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "number_of_codes",
+                this.NumberOfCodes.ToString(),
+                "Specifies the number of character codes in the string (when coded as characters)",
+                grpGeneral
+            );
+            
+
+        }
     }
 }

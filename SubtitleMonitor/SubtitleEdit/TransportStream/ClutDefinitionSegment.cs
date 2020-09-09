@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using SubtitleMonitor;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
 {
@@ -78,5 +80,127 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
 
             return res;
         }
+
+
+        public void PopulateListViewDetails(ListView Lv)
+        {
+            Lv.Items.Clear();
+            ListViewGroup grpGeneral = Lv.Groups.Add("General", "General");
+
+            Utils.AddListViewEntry(
+                Lv,
+                "CLUT_id",
+                ClutId.ToString(),
+                "Uniquely identifies within a page the CLUT family whose data is contained in this CLUT_definition_segment field.",
+                grpGeneral
+            );
+
+            Utils.AddListViewEntry(
+                Lv,
+                "CLUT_version_number",
+                ClutVersionNumber.ToString(),
+                "Indicates the version of this segment data. When any of the contents of this segment change this version number is incremented(modulo 16). ",
+                grpGeneral
+            );
+
+
+            Utils.AddListViewEntry(
+                Lv,
+                "number of regional clut entries:",
+                this.Entries.Count.ToString(),
+                "",
+                grpGeneral
+            );
+
+            if (this.Entries.Count > 0)
+            {
+                foreach (RegionClutSegmentEntry item in this.Entries)
+                {
+
+                    ListViewGroup grpClutEntry = Lv.Groups.Add("CLUT Entry" + item.ClutEntryId.ToString(), "CLUT Entry ID " + item.ClutEntryId.ToString());
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "CLUT_entry_id",
+                        item.ClutEntryId.ToString(),
+                        "Specifies the entry number of the CLUT. The first entry of the CLUT has entry number zero",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "2-bit/entry_CLUT_flag",
+                        item.ClutEntry2BitClutEntryFlag.ToString(),
+                        "If set to '1', this indicates that this CLUT value is to be loaded into the identified entry of the 2 - bit / entry CLUT.This option shall not be used when the CDS accompanies an alternative CLUT segment(ACS).",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "4-bit/entry_CLUT_flag",
+                        item.ClutEntry4BitClutEntryFlag.ToString(),
+                        "If set to '1', this indicates that this CLUT value is to be loaded into the identified entry of the 4 - bit / entry CLUT.This option shall not be used when the CDS accompanies an alternative CLUT segment(ACS).",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "8-bit/entry_CLUT_flag",
+                        item.ClutEntry8BitClutEntryFlag.ToString(),
+                        "If set to '1', this indicates that this CLUT value is to be loaded into the identified entry of the 8 - bit / entry CLUT.This option shall be used when the CDS accompanies an alternative CLUT segment(ACS). ",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "full_range_flag",
+                        item.FullRangeFlag.ToString(),
+                        "If set to '1', this indicates that the Y_value, Cr_value, Cb_value and T_value fields have the full 8-bit resolution.If set to '0', then these fields contain only the most significant bits",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "Y_value",
+                        item.ClutEntryY.ToString(),
+                        "The Y output value of the CLUT for this entry. A value of zero in the Y_value field signals full transparency. In that case the values in the Cr_value, Cb_value and T_value fields are irrelevant and shall be set to zero.",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "Cr_value",
+                        item.ClutEntryCr.ToString(),
+                        "The Cr output value of the CLUT for this entry.",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "Cb_value",
+                        item.ClutEntryCb.ToString(),
+                        "The Cb output value of the CLUT for this entry.",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "T_value",
+                        item.ClutEntryT.ToString(),
+                        "The Transparency output value of the CLUT for this entry. A value of zero identifies no transparency. The maximum value plus one would correspond to full transparency.For all other values the level of transparency is defined by linear interpolation.",
+                        grpClutEntry
+                    );
+
+                    Utils.AddListViewEntry(
+                        Lv,
+                        "Colour",
+                        item.GetColor().ToString(),
+                        "",
+                        grpClutEntry
+                    );
+                }
+            }
+        }
+
     }
 }

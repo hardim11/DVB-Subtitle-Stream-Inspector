@@ -62,6 +62,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
 
             return Color.FromArgb(t, r, g, b);
         }
+    
     }
 
 }
