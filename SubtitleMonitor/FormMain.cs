@@ -31,10 +31,9 @@ namespace SubtitleMonitor
             this.splitContainerMaIN.Visible = false;
             this.progressBarLoading.Value = this.progressBarLoading.Minimum;
             this.progressBarLoading.Visible = true;
+            this.splitContainerMaIN.Visible = true;
 
             // run in background
-
-
             BackGroundWorkerInitInfo initInfo = new BackGroundWorkerInitInfo { SourceFile = Filepath, CreateHtmlFiles = this.checkBoxCreateHTML.Checked };
             this.backgroundWorkerMain.RunWorkerAsync(initInfo);
         }
@@ -162,8 +161,6 @@ namespace SubtitleMonitor
                 if (this.treeViewMain.SelectedNode.Tag != null)
                 {
                     string tagType = this.treeViewMain.SelectedNode.Tag.GetType().ToString();
-                    Console.WriteLine(tagType);
-
                     switch (tagType)
                     {
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.PageCompositionSegment":
@@ -250,11 +247,22 @@ namespace SubtitleMonitor
         private void backgroundWorkerMain_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             TransportStreamParser tsParser = (TransportStreamParser)e.Result;
-
             PopulateTreeView(tsParser);
-
-            this.progressBarLoading.Visible = false;
             this.splitContainerMaIN.Visible = true;
+            this.progressBarLoading.Value = this.progressBarLoading.Minimum;
+            this.panelAbout.Visible = false;
+        }
+
+        private void buttonOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.DefaultExt = "ts";
+            dlg.Filter = "Transport Stream Files|*.ts|All Files|*.*";
+            dlg.Multiselect = false;
+            if (dlg.ShowDialog() != DialogResult.OK) { return; }
+
+            DoIt(dlg.FileName);
+
         }
     }
 }
