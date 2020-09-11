@@ -33,33 +33,35 @@
             this.buttonTestFile2 = new System.Windows.Forms.Button();
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.splitContainerMaIN = new System.Windows.Forms.SplitContainer();
+            this.splitContainerDetails = new System.Windows.Forms.SplitContainer();
             this.listViewDetails = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
-            this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.panelDescripton = new System.Windows.Forms.Panel();
             this.textBoxDesc = new System.Windows.Forms.TextBox();
-            this.splitContainerDetails = new System.Windows.Forms.SplitContainer();
+            this.progressBarLoading = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.checkBoxCreateHTML = new System.Windows.Forms.CheckBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.panelAbout = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBoxSubs = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).BeginInit();
             this.splitContainerMaIN.Panel1.SuspendLayout();
             this.splitContainerMaIN.Panel2.SuspendLayout();
             this.splitContainerMaIN.SuspendLayout();
-            this.panelDescripton.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerDetails)).BeginInit();
             this.splitContainerDetails.Panel1.SuspendLayout();
             this.splitContainerDetails.Panel2.SuspendLayout();
             this.splitContainerDetails.SuspendLayout();
+            this.panelDescripton.SuspendLayout();
             this.panelAbout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonTestFile1
@@ -114,6 +116,24 @@
             this.splitContainerMaIN.TabIndex = 3;
             this.splitContainerMaIN.Visible = false;
             // 
+            // splitContainerDetails
+            // 
+            this.splitContainerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerDetails.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerDetails.Name = "splitContainerDetails";
+            this.splitContainerDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerDetails.Panel1
+            // 
+            this.splitContainerDetails.Panel1.Controls.Add(this.listViewDetails);
+            // 
+            // splitContainerDetails.Panel2
+            // 
+            this.splitContainerDetails.Panel2.Controls.Add(this.panelDescripton);
+            this.splitContainerDetails.Size = new System.Drawing.Size(690, 464);
+            this.splitContainerDetails.SplitterDistance = 309;
+            this.splitContainerDetails.TabIndex = 2;
+            // 
             // listViewDetails
             // 
             this.listViewDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -126,7 +146,7 @@
             this.listViewDetails.Location = new System.Drawing.Point(0, 0);
             this.listViewDetails.Name = "listViewDetails";
             this.listViewDetails.ShowItemToolTips = true;
-            this.listViewDetails.Size = new System.Drawing.Size(690, 364);
+            this.listViewDetails.Size = new System.Drawing.Size(690, 309);
             this.listViewDetails.TabIndex = 0;
             this.listViewDetails.UseCompatibleStateImageBehavior = false;
             this.listViewDetails.View = System.Windows.Forms.View.Details;
@@ -147,6 +167,25 @@
             this.columnHeader3.Text = "Information";
             this.columnHeader3.Width = 300;
             // 
+            // panelDescripton
+            // 
+            this.panelDescripton.Controls.Add(this.pictureBoxSubs);
+            this.panelDescripton.Controls.Add(this.textBoxDesc);
+            this.panelDescripton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDescripton.Location = new System.Drawing.Point(0, 0);
+            this.panelDescripton.Name = "panelDescripton";
+            this.panelDescripton.Size = new System.Drawing.Size(690, 151);
+            this.panelDescripton.TabIndex = 1;
+            // 
+            // textBoxDesc
+            // 
+            this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDesc.Location = new System.Drawing.Point(0, 0);
+            this.textBoxDesc.Multiline = true;
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(690, 151);
+            this.textBoxDesc.TabIndex = 0;
+            // 
             // progressBarLoading
             // 
             this.progressBarLoading.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -162,42 +201,6 @@
             this.backgroundWorkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMain_DoWork);
             this.backgroundWorkerMain.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMain_ProgressChanged);
             this.backgroundWorkerMain.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerMain_RunWorkerCompleted);
-            // 
-            // panelDescripton
-            // 
-            this.panelDescripton.Controls.Add(this.textBoxDesc);
-            this.panelDescripton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDescripton.Location = new System.Drawing.Point(0, 0);
-            this.panelDescripton.Name = "panelDescripton";
-            this.panelDescripton.Size = new System.Drawing.Size(690, 96);
-            this.panelDescripton.TabIndex = 1;
-            // 
-            // textBoxDesc
-            // 
-            this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDesc.Location = new System.Drawing.Point(0, 0);
-            this.textBoxDesc.Multiline = true;
-            this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(690, 96);
-            this.textBoxDesc.TabIndex = 0;
-            // 
-            // splitContainerDetails
-            // 
-            this.splitContainerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerDetails.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerDetails.Name = "splitContainerDetails";
-            this.splitContainerDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainerDetails.Panel1
-            // 
-            this.splitContainerDetails.Panel1.Controls.Add(this.listViewDetails);
-            // 
-            // splitContainerDetails.Panel2
-            // 
-            this.splitContainerDetails.Panel2.Controls.Add(this.panelDescripton);
-            this.splitContainerDetails.Size = new System.Drawing.Size(690, 464);
-            this.splitContainerDetails.SplitterDistance = 364;
-            this.splitContainerDetails.TabIndex = 2;
             // 
             // checkBoxCreateHTML
             // 
@@ -236,27 +239,28 @@
             this.panelAbout.Size = new System.Drawing.Size(1040, 464);
             this.panelAbout.TabIndex = 7;
             // 
-            // label1
+            // linkLabel2
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(-1, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1040, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "DVB Subtitle Explorer";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.linkLabel2.Location = new System.Drawing.Point(3, 220);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(1032, 23);
+            this.linkLabel2.TabIndex = 4;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "https://dvb.org/wp-content/uploads/2019/12/a009_dvb_bitmap_subtitles_nov_2017.pdf" +
+    "";
+            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // label3
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(346, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(348, 70);
-            this.label2.TabIndex = 1;
-            this.label2.Text = resources.GetString("label2.Text");
+            this.label3.Location = new System.Drawing.Point(346, 190);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(348, 24);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "The DVB subtitle specification can be found on the DVB website;";
             // 
             // linkLabel1
             // 
@@ -270,28 +274,38 @@
             this.linkLabel1.Text = "https://www.nikse.dk/";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // label2
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(346, 190);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(348, 24);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "The DVB subtitle specification can be found on the DVB website;";
+            this.label2.Location = new System.Drawing.Point(346, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(348, 70);
+            this.label2.TabIndex = 1;
+            this.label2.Text = resources.GetString("label2.Text");
             // 
-            // linkLabel2
+            // label1
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.Location = new System.Drawing.Point(3, 220);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(1032, 23);
-            this.linkLabel2.TabIndex = 4;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "https://dvb.org/wp-content/uploads/2019/12/a009_dvb_bitmap_subtitles_nov_2017.pdf" +
-    "";
-            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-1, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1040, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "DVB Subtitle Explorer";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pictureBoxSubs
+            // 
+            this.pictureBoxSubs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.pictureBoxSubs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSubs.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxSubs.Name = "pictureBoxSubs";
+            this.pictureBoxSubs.Size = new System.Drawing.Size(690, 151);
+            this.pictureBoxSubs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSubs.TabIndex = 1;
+            this.pictureBoxSubs.TabStop = false;
             // 
             // FormMain
             // 
@@ -312,13 +326,14 @@
             this.splitContainerMaIN.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).EndInit();
             this.splitContainerMaIN.ResumeLayout(false);
-            this.panelDescripton.ResumeLayout(false);
-            this.panelDescripton.PerformLayout();
             this.splitContainerDetails.Panel1.ResumeLayout(false);
             this.splitContainerDetails.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerDetails)).EndInit();
             this.splitContainerDetails.ResumeLayout(false);
+            this.panelDescripton.ResumeLayout(false);
+            this.panelDescripton.PerformLayout();
             this.panelAbout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,6 +362,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBoxSubs;
     }
 }
 

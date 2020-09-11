@@ -50,6 +50,10 @@ namespace SubtitleMonitor
                 foreach (var aDvbPes in aPid.Value)
                 {
                     TreeNode pesNode = pidNode.Nodes.Add("PTS " + aDvbPes.PresentationTimestampToString() + " (" +  aDvbPes.SubtitleSegments.Count.ToString() + " segments)");
+
+                    // add the bitmap?
+                    pesNode.Tag = aDvbPes.GetImageFull();
+
                     foreach (var aSubtitleSegment in aDvbPes.SubtitleSegments)
                     {
                         TreeNode segmentNode = pesNode.Nodes.Add(aSubtitleSegment.SegmentTypeDescription);
@@ -164,22 +168,36 @@ namespace SubtitleMonitor
                     switch (tagType)
                     {
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.PageCompositionSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((PageCompositionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.RegionCompositionSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((RegionCompositionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.ClutDefinitionSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((ClutDefinitionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.ObjectDataSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((ObjectDataSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DisplayDefinitionSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((DisplayDefinitionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.EndOfDisplaySetSegment":
+                            SwitchDetailsDescriptionFrame(false);
                             ((EndOfDisplaySetSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
+                            break;
+                        case "System.Drawing.Bitmap":
+                            SwitchDetailsDescriptionFrame(true);
+                            this.listViewDetails.Items.Clear();
+                            Bitmap tmp = (Bitmap)this.treeViewMain.SelectedNode.Tag;
+
+                            this.pictureBoxSubs.Image = tmp;
+
                             break;
                         default:
                             Console.WriteLine("Unknown Segment Type");
@@ -196,6 +214,12 @@ namespace SubtitleMonitor
             {
                 this.listViewDetails.EndUpdate();
             } 
+        }
+
+        private void SwitchDetailsDescriptionFrame(bool ShowImage = false)
+        {
+            this.pictureBoxSubs.Visible = ShowImage;
+            this.textBoxDesc.Visible = !ShowImage;
         }
 
         private void listViewDetails_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
