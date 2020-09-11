@@ -1,4 +1,4 @@
-﻿using Nikse.SubtitleEdit.Core.BluRaySup;
+﻿//using Nikse.SubtitleEdit.Core.BluRaySup;
 using Nikse.SubtitleEdit.Core.VobSub;
 using System;
 using System.Collections.Generic;

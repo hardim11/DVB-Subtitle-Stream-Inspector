@@ -60,13 +60,6 @@
     <Compile Include="IsoCountryCodes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupPalette.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupParser.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\BluRaySupPicture.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\Core.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\ImageObjectFragment.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\PaletteInfo.cs" />
-    <Compile Include="SubtitleEdit\BluRaySup\ToolBox.cs" />
     <Compile Include="SubtitleEdit\CharUtils.cs" />
     <Compile Include="SubtitleEdit\Configuration.cs" />
     <Compile Include="SubtitleEdit\DetectEncoding\EncodingTools.cs" />

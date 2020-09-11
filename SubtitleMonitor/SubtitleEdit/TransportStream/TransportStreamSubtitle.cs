@@ -10,20 +10,8 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
         public ulong EndMilliseconds { get; set; }
 
         public DvbSubPes Pes { get; set; }
-        private readonly BluRaySup.BluRaySupParser.PcsData _bdSup;
         public int? ActiveImageIndex { get; set; }
-
-        public bool IsBluRaySup => _bdSup != null;
-
         public bool IsDvbSub => Pes != null;
-
-        public TransportStreamSubtitle(BluRaySup.BluRaySupParser.PcsData bdSup, ulong startMilliseconds, ulong endMilliseconds)
-        {
-            _bdSup = bdSup;
-            StartMilliseconds = startMilliseconds;
-            EndMilliseconds = endMilliseconds;
-        }
-
         public TransportStreamSubtitle()
         {
         }
@@ -34,11 +22,6 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
         /// <returns></returns>
         public Bitmap GetBitmap()
         {
-            if (_bdSup != null)
-            {
-                return _bdSup.GetBitmap();
-            }
-
             if (ActiveImageIndex.HasValue && ActiveImageIndex >= 0 && ActiveImageIndex < Pes.ObjectDataList.Count)
             {
                 return (Bitmap)Pes.GetImage(Pes.ObjectDataList[ActiveImageIndex.Value]).Clone();
@@ -51,20 +34,12 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
         {
             get
             {
-                if (_bdSup != null)
-                {
-                    return _bdSup.IsForced;
-                }
                 return false;
             }
         }
 
         public Position GetPosition()
         {
-            if (_bdSup != null)
-            {
-                return _bdSup.GetPosition();
-            }
             return new Position(0, 0);
         }
 
@@ -77,8 +52,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
                 {
                     return Pes.ObjectDataList.Count;
                 }
-
-                return _bdSup.BitmapObjects.Count;
+                return 0;
             }
         }
 

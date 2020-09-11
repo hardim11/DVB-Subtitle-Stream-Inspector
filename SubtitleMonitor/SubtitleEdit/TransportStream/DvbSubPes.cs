@@ -14,6 +14,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
 
         public int Length { get; }
         public ulong? PresentationTimestamp { get; }
+
         public ulong? DecodeTimestamp { get; }
         public int? SubPictureStreamId { get; }
         public uint StartCode { get; }
@@ -529,6 +530,13 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
         {
             stream.Write(_dataBuffer, 0, _dataBuffer.Length);
         }
+
+        public string PresentationTimestampToString()
+        {
+            ulong ms = PresentationTimestampToMilliseconds();
+            return new TimeCode(ms).ToDisplayString();
+        }
+
 
     }
 }

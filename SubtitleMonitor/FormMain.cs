@@ -49,7 +49,7 @@ namespace SubtitleMonitor
                 //do the PES
                 foreach (var aDvbPes in aPid.Value)
                 {
-                    TreeNode pesNode = pidNode.Nodes.Add("PTS " + aDvbPes.PresentationTimestamp.ToString() + " (" +  aDvbPes.SubtitleSegments.Count.ToString() + " segments)");
+                    TreeNode pesNode = pidNode.Nodes.Add("PTS " + aDvbPes.PresentationTimestampToString() + " (" +  aDvbPes.SubtitleSegments.Count.ToString() + " segments)");
                     foreach (var aSubtitleSegment in aDvbPes.SubtitleSegments)
                     {
                         TreeNode segmentNode = pesNode.Nodes.Add(aSubtitleSegment.SegmentTypeDescription);
