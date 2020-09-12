@@ -21,7 +21,7 @@ namespace SubtitleMonitor
 
         private void DoIt(string Filepath)
         {
-
+            // check that the file is there
             if (!(File.Exists(Filepath)))
             {
                 MessageBox.Show("File not found \"" + Filepath + "\"");
@@ -31,7 +31,6 @@ namespace SubtitleMonitor
             this.splitContainerMaIN.Visible = false;
             this.progressBarLoading.Value = this.progressBarLoading.Minimum;
             this.progressBarLoading.Visible = true;
-            this.splitContainerMaIN.Visible = true;
 
             // run in background
             BackGroundWorkerInitInfo initInfo = new BackGroundWorkerInitInfo { SourceFile = Filepath, CreateHtmlFiles = this.checkBoxCreateHTML.Checked };
@@ -43,18 +42,24 @@ namespace SubtitleMonitor
             this.textBoxDesc.Text = "";
             this.listViewDetails.Items.Clear();
             this.treeViewMain.Nodes.Clear();
-            foreach (var aPid in TsParser.SubtitlesLookup)
+            foreach (KeyValuePair<int, List<DvbSubPes>> aPid in TsParser.SubtitlesLookup)
             {
                 TreeNode pidNode = this.treeViewMain.Nodes.Add("PID " + aPid.Key.ToString());
+                // would be nice to add descriptors
+                //TODO add descriptors
+
+
                 //do the PES
-                foreach (var aDvbPes in aPid.Value)
+                foreach (DvbSubPes aDvbPes in aPid.Value)
                 {
                     TreeNode pesNode = pidNode.Nodes.Add("PTS " + aDvbPes.PresentationTimestampToString() + " (" +  aDvbPes.SubtitleSegments.Count.ToString() + " segments)");
 
                     // add the bitmap?
-                    pesNode.Tag = aDvbPes.GetImageFull();
+                    // this causes a huge memory footprint, need a better way
+                    //pesNode.Tag = aDvbPes.GetImageFull();
+                    pesNode.Tag = aDvbPes;
 
-                    foreach (var aSubtitleSegment in aDvbPes.SubtitleSegments)
+                    foreach (SubtitleSegment aSubtitleSegment in aDvbPes.SubtitleSegments)
                     {
                         TreeNode segmentNode = pesNode.Nodes.Add(aSubtitleSegment.SegmentTypeDescription);
                         segmentNode.Tag = aSubtitleSegment;
@@ -97,7 +102,7 @@ namespace SubtitleMonitor
             {
                 res += "<tr><th>PTS: " + aDvbPes.PresentationTimestamp.ToString() + "</th><td><table border=\"1\" width=\"100%\">\r\n";
 
-                foreach (var aSubtitleSegment in aDvbPes.SubtitleSegments)
+                foreach (SubtitleSegment aSubtitleSegment in aDvbPes.SubtitleSegments)
                 {
                     res += "<tr><td>" + aSubtitleSegment.SegmentTypeDescription + "</td><td>Page ID:" + aSubtitleSegment.PageId.ToString() + "</td></tr>\r\n";
                     res += "<tr><td>&nbsp;</td><td>";
@@ -199,6 +204,16 @@ namespace SubtitleMonitor
                             this.pictureBoxSubs.Image = tmp;
 
                             break;
+                        case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DvbSubPes":
+
+
+                            SwitchDetailsDescriptionFrame(true);
+                            this.listViewDetails.Items.Clear();
+                            DvbSubPes tmp2 = (DvbSubPes)this.treeViewMain.SelectedNode.Tag;
+
+                            this.pictureBoxSubs.Image = tmp2.GetImageFull();
+
+                            break;
                         default:
                             Console.WriteLine("Unknown Segment Type");
                             this.listViewDetails.Items.Clear();
@@ -232,7 +247,6 @@ namespace SubtitleMonitor
             {
                 this.textBoxDesc.Text = this.listViewDetails.SelectedItems[0].SubItems[2].Text;
             }
-
         }
 
         private void backgroundWorkerMain_DoWork(object sender, DoWorkEventArgs e)
@@ -243,7 +257,7 @@ namespace SubtitleMonitor
             tsParser.Parse(initInfo.SourceFile, (pos, total) => UpdateProgressBackground(pos, total, "Parsing Transport Stream file. Please wait..."));
             if (initInfo.CreateHtmlFiles)
             {
-                foreach (var item in tsParser.SubtitlesLookup)
+                foreach (KeyValuePair<int, List<DvbSubPes>> item in tsParser.SubtitlesLookup)
                 {
                     string res = "<html><body>";
                     res += GetHtmlPid(item);
@@ -287,6 +301,32 @@ namespace SubtitleMonitor
 
             DoIt(dlg.FileName);
 
+        }
+
+        private void LaunchLink(LinkLabel Link)
+        {
+            // Navigate to a URL.
+            System.Diagnostics.Process.Start(Link.Text);
+        }
+
+        private void linkLabelSubtitleEdit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LaunchLink((LinkLabel)sender);
+        }
+
+        private void linkLabelDVBSpec_Click(object sender, EventArgs e)
+        {
+            LaunchLink((LinkLabel)sender);
+        }
+
+        private void linkLabelDvbAnalyser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LaunchLink((LinkLabel)sender);
+        }
+
+        private void linkLabelStreaGuru_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LaunchLink((LinkLabel)sender);
         }
     }
 }

@@ -39,18 +39,21 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelDescripton = new System.Windows.Forms.Panel();
+            this.pictureBoxSubs = new System.Windows.Forms.PictureBox();
             this.textBoxDesc = new System.Windows.Forms.TextBox();
             this.progressBarLoading = new System.Windows.Forms.ProgressBar();
             this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.checkBoxCreateHTML = new System.Windows.Forms.CheckBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.panelAbout = new System.Windows.Forms.Panel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelStreaGuru = new System.Windows.Forms.LinkLabel();
+            this.linkLabelDvbAnalyser = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.linkLabelDVBSpec = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelSubtitleEdit = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBoxSubs = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).BeginInit();
             this.splitContainerMaIN.Panel1.SuspendLayout();
             this.splitContainerMaIN.Panel2.SuspendLayout();
@@ -60,16 +63,16 @@
             this.splitContainerDetails.Panel2.SuspendLayout();
             this.splitContainerDetails.SuspendLayout();
             this.panelDescripton.SuspendLayout();
-            this.panelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).BeginInit();
+            this.panelAbout.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonTestFile1
             // 
             this.buttonTestFile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTestFile1.Location = new System.Drawing.Point(610, 41);
+            this.buttonTestFile1.Location = new System.Drawing.Point(828, 41);
             this.buttonTestFile1.Name = "buttonTestFile1";
-            this.buttonTestFile1.Size = new System.Drawing.Size(218, 23);
+            this.buttonTestFile1.Size = new System.Drawing.Size(109, 23);
             this.buttonTestFile1.TabIndex = 2;
             this.buttonTestFile1.Text = "Test File 1";
             this.buttonTestFile1.UseVisualStyleBackColor = true;
@@ -78,9 +81,9 @@
             // buttonTestFile2
             // 
             this.buttonTestFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTestFile2.Location = new System.Drawing.Point(834, 41);
+            this.buttonTestFile2.Location = new System.Drawing.Point(943, 41);
             this.buttonTestFile2.Name = "buttonTestFile2";
-            this.buttonTestFile2.Size = new System.Drawing.Size(218, 23);
+            this.buttonTestFile2.Size = new System.Drawing.Size(109, 23);
             this.buttonTestFile2.TabIndex = 3;
             this.buttonTestFile2.Text = "Test File 2";
             this.buttonTestFile2.UseVisualStyleBackColor = true;
@@ -177,6 +180,17 @@
             this.panelDescripton.Size = new System.Drawing.Size(690, 151);
             this.panelDescripton.TabIndex = 1;
             // 
+            // pictureBoxSubs
+            // 
+            this.pictureBoxSubs.BackColor = System.Drawing.SystemColors.ControlText;
+            this.pictureBoxSubs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSubs.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxSubs.Name = "pictureBoxSubs";
+            this.pictureBoxSubs.Size = new System.Drawing.Size(690, 151);
+            this.pictureBoxSubs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSubs.TabIndex = 1;
+            this.pictureBoxSubs.TabStop = false;
+            // 
             // textBoxDesc
             // 
             this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -207,9 +221,9 @@
             this.checkBoxCreateHTML.AutoSize = true;
             this.checkBoxCreateHTML.Location = new System.Drawing.Point(258, 45);
             this.checkBoxCreateHTML.Name = "checkBoxCreateHTML";
-            this.checkBoxCreateHTML.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxCreateHTML.Size = new System.Drawing.Size(149, 17);
             this.checkBoxCreateHTML.TabIndex = 1;
-            this.checkBoxCreateHTML.Text = "Create HTML Files";
+            this.checkBoxCreateHTML.Text = "Create HTML Report Files";
             this.checkBoxCreateHTML.UseVisualStyleBackColor = true;
             // 
             // buttonOpenFile
@@ -229,9 +243,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelAbout.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelAbout.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelAbout.Controls.Add(this.linkLabel2);
+            this.panelAbout.Controls.Add(this.linkLabelStreaGuru);
+            this.panelAbout.Controls.Add(this.linkLabelDvbAnalyser);
+            this.panelAbout.Controls.Add(this.label4);
+            this.panelAbout.Controls.Add(this.linkLabelDVBSpec);
             this.panelAbout.Controls.Add(this.label3);
-            this.panelAbout.Controls.Add(this.linkLabel1);
+            this.panelAbout.Controls.Add(this.linkLabelSubtitleEdit);
             this.panelAbout.Controls.Add(this.label2);
             this.panelAbout.Controls.Add(this.label1);
             this.panelAbout.Location = new System.Drawing.Point(12, 70);
@@ -239,50 +256,98 @@
             this.panelAbout.Size = new System.Drawing.Size(1040, 464);
             this.panelAbout.TabIndex = 7;
             // 
-            // linkLabel2
+            // linkLabelStreaGuru
             // 
-            this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.linkLabelStreaGuru.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel2.Location = new System.Drawing.Point(3, 220);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(1032, 23);
-            this.linkLabel2.TabIndex = 4;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "https://dvb.org/wp-content/uploads/2019/12/a009_dvb_bitmap_subtitles_nov_2017.pdf" +
+            this.linkLabelStreaGuru.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelStreaGuru.Location = new System.Drawing.Point(245, 379);
+            this.linkLabelStreaGuru.Name = "linkLabelStreaGuru";
+            this.linkLabelStreaGuru.Size = new System.Drawing.Size(545, 23);
+            this.linkLabelStreaGuru.TabIndex = 7;
+            this.linkLabelStreaGuru.TabStop = true;
+            this.linkLabelStreaGuru.Text = "https://www.streamguru.de/";
+            this.linkLabelStreaGuru.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelStreaGuru.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelStreaGuru_LinkClicked);
+            // 
+            // linkLabelDvbAnalyser
+            // 
+            this.linkLabelDvbAnalyser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelDvbAnalyser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelDvbAnalyser.Location = new System.Drawing.Point(245, 356);
+            this.linkLabelDvbAnalyser.Name = "linkLabelDvbAnalyser";
+            this.linkLabelDvbAnalyser.Size = new System.Drawing.Size(545, 23);
+            this.linkLabelDvbAnalyser.TabIndex = 6;
+            this.linkLabelDvbAnalyser.TabStop = true;
+            this.linkLabelDvbAnalyser.Text = "https://www.dvbcontrol.com/dvbanalyzer/";
+            this.linkLabelDvbAnalyser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelDvbAnalyser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelDvbAnalyser_LinkClicked);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(245, 311);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(545, 35);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "There are several, much better, commerical applications which perform similar fun" +
+    "ctions. With different prices (and functionality), I\'d point you to :\r\n";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // linkLabelDVBSpec
+            // 
+            this.linkLabelDVBSpec.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelDVBSpec.Location = new System.Drawing.Point(3, 220);
+            this.linkLabelDVBSpec.Name = "linkLabelDVBSpec";
+            this.linkLabelDVBSpec.Size = new System.Drawing.Size(1032, 23);
+            this.linkLabelDVBSpec.TabIndex = 4;
+            this.linkLabelDVBSpec.TabStop = true;
+            this.linkLabelDVBSpec.Text = "https://dvb.org/wp-content/uploads/2019/12/a009_dvb_bitmap_subtitles_nov_2017.pdf" +
     "";
-            this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelDVBSpec.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelDVBSpec.Click += new System.EventHandler(this.linkLabelDVBSpec_Click);
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(346, 190);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(348, 24);
             this.label3.TabIndex = 3;
             this.label3.Text = "The DVB subtitle specification can be found on the DVB website;";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // linkLabel1
+            // linkLabelSubtitleEdit
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.linkLabelSubtitleEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.Location = new System.Drawing.Point(349, 127);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(345, 23);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://www.nikse.dk/";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelSubtitleEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelSubtitleEdit.Location = new System.Drawing.Point(349, 127);
+            this.linkLabelSubtitleEdit.Name = "linkLabelSubtitleEdit";
+            this.linkLabelSubtitleEdit.Size = new System.Drawing.Size(345, 23);
+            this.linkLabelSubtitleEdit.TabIndex = 2;
+            this.linkLabelSubtitleEdit.TabStop = true;
+            this.linkLabelSubtitleEdit.Text = "https://www.nikse.dk/";
+            this.linkLabelSubtitleEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linkLabelSubtitleEdit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSubtitleEdit_LinkClicked);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(346, 53);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(245, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(348, 70);
+            this.label2.Size = new System.Drawing.Size(545, 70);
             this.label2.TabIndex = 1;
             this.label2.Text = resources.GetString("label2.Text");
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label1
             // 
@@ -296,29 +361,18 @@
             this.label1.Text = "DVB Subtitle Explorer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pictureBoxSubs
-            // 
-            this.pictureBoxSubs.BackColor = System.Drawing.SystemColors.ControlText;
-            this.pictureBoxSubs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSubs.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxSubs.Name = "pictureBoxSubs";
-            this.pictureBoxSubs.Size = new System.Drawing.Size(690, 151);
-            this.pictureBoxSubs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxSubs.TabIndex = 1;
-            this.pictureBoxSubs.TabStop = false;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 546);
+            this.Controls.Add(this.panelAbout);
             this.Controls.Add(this.buttonOpenFile);
             this.Controls.Add(this.checkBoxCreateHTML);
             this.Controls.Add(this.progressBarLoading);
             this.Controls.Add(this.splitContainerMaIN);
             this.Controls.Add(this.buttonTestFile2);
             this.Controls.Add(this.buttonTestFile1);
-            this.Controls.Add(this.panelAbout);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DVB Subtitle Explorer";
@@ -332,8 +386,8 @@
             this.splitContainerDetails.ResumeLayout(false);
             this.panelDescripton.ResumeLayout(false);
             this.panelDescripton.PerformLayout();
-            this.panelAbout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).EndInit();
+            this.panelAbout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,12 +411,15 @@
         private System.Windows.Forms.CheckBox checkBoxCreateHTML;
         private System.Windows.Forms.Button buttonOpenFile;
         private System.Windows.Forms.Panel panelAbout;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelDVBSpec;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel linkLabelSubtitleEdit;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBoxSubs;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel linkLabelStreaGuru;
+        private System.Windows.Forms.LinkLabel linkLabelDvbAnalyser;
     }
 }
 
