@@ -425,24 +425,54 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             return p;
         }
 
-        public Bitmap GetImage(ObjectDataSegment ods)
+        public Bitmap AddBitmapBorder(Bitmap InputBitmap, Color BorderColour)
+        {
+
+            if ((InputBitmap.Width < 5) || (InputBitmap.Height < 5))
+            {
+                return InputBitmap;
+            }
+
+            Bitmap bmp = new Bitmap(InputBitmap, new System.Drawing.Size(InputBitmap.Width, InputBitmap.Height));
+
+            System.Drawing.Graphics gr = System.Drawing.Graphics.FromImage(bmp);
+
+            gr.DrawLine(new Pen(BorderColour, 1), new Point(0, 0), new Point(0, InputBitmap.Height - 1));
+            gr.DrawLine(new Pen(BorderColour, 1), new Point(0, 0), new Point(InputBitmap.Width - 1, 0));
+            gr.DrawLine(new Pen(BorderColour, 1), new Point(0, InputBitmap.Height - 1), new Point(InputBitmap.Width - 1, InputBitmap.Height - 1));
+            gr.DrawLine(new Pen(BorderColour, 1), new Point(InputBitmap.Width - 1, 0), new Point(InputBitmap.Width - 1, InputBitmap.Height - 1));
+
+            return bmp;
+        }
+
+        public Bitmap GetImage(ObjectDataSegment ods, bool AddBorder = false)
         {
             if (SubtitleSegments == null)
             {
                 ParseSegments();
             }
 
+            // this caches the image, removing so border switching works, do I need to clean up memory?
             if (ods.Image != null)
             {
-                return ods.Image;
+                //return ods.Image;
+                ods.Image.Dispose();
             }
 
             var cds = GetClutDefinitionSegment(ods);
             ods.DecodeImage(_dataBuffer, ods.BufferIndex, cds);
-            return ods.Image;
+
+            if (AddBorder)
+            {
+                return AddBitmapBorder(ods.Image, Color.White);
+            }
+            else
+            {
+                return ods.Image;
+            }
         }
 
-        public Bitmap GetImageFull()
+        public Bitmap GetImageFull(bool ShowObjectBorders = false)
         {
             if (SubtitleSegments == null)
             {
@@ -465,7 +495,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             var bmp = new Bitmap(width, height);
             foreach (var ods in ObjectDataList)
             {
-                var odsImage = GetImage(ods);
+                var odsImage = GetImage(ods, ShowObjectBorders);
                 if (odsImage != null)
                 {
                     var odsPoint = GetImagePosition(ods);

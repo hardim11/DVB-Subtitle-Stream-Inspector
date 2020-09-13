@@ -162,6 +162,11 @@ namespace SubtitleMonitor
 
         private void treeViewMain_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            TreeViewItemChange();
+        }
+
+        private void TreeViewItemChange()
+        { 
             this.listViewDetails.BeginUpdate();
             try
             {
@@ -196,23 +201,25 @@ namespace SubtitleMonitor
                             SwitchDetailsDescriptionFrame(false);
                             ((EndOfDisplaySetSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
-                        case "System.Drawing.Bitmap":
-                            SwitchDetailsDescriptionFrame(true);
-                            this.listViewDetails.Items.Clear();
-                            Bitmap tmp = (Bitmap)this.treeViewMain.SelectedNode.Tag;
+                        //case "System.Drawing.Bitmap":
+                        //    SwitchDetailsDescriptionFrame(true);
+                        //    this.listViewDetails.Items.Clear();
+                        //    Bitmap tmp = (Bitmap)this.treeViewMain.SelectedNode.Tag;
 
-                            this.pictureBoxSubs.Image = tmp;
+                        //    this.pictureBoxSubs.Image = tmp;
 
-                            break;
+                        //    break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DvbSubPes":
-
-
                             SwitchDetailsDescriptionFrame(true);
                             this.listViewDetails.Items.Clear();
                             DvbSubPes tmp2 = (DvbSubPes)this.treeViewMain.SelectedNode.Tag;
 
-                            this.pictureBoxSubs.Image = tmp2.GetImageFull();
-
+                            Image old = this.pictureBoxSubs.Image;
+                            this.pictureBoxSubs.Image = tmp2.GetImageFull(this.checkBoxShowObjectBorder.Checked);
+                            if (old != null)
+                            {
+                                old.Dispose();
+                            }
                             break;
                         default:
                             Console.WriteLine("Unknown Segment Type");
@@ -327,6 +334,20 @@ namespace SubtitleMonitor
         private void linkLabelStreaGuru_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LaunchLink((LinkLabel)sender);
+        }
+
+        private void checkBoxShowObjectBorder_CheckedChanged(object sender, EventArgs e)
+        {
+            // repaint if already showing an image
+            if (this.treeViewMain.SelectedNode == null) { return; }
+
+            if (this.treeViewMain.SelectedNode.Tag != null)
+            {
+                if (this.treeViewMain.SelectedNode.Tag.GetType().ToString() == "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DvbSubPes")
+                {
+                    TreeViewItemChange();
+                }
+            }
         }
     }
 }

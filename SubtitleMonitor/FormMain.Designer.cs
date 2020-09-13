@@ -54,6 +54,7 @@
             this.linkLabelSubtitleEdit = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBoxShowObjectBorder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).BeginInit();
             this.splitContainerMaIN.Panel1.SuspendLayout();
             this.splitContainerMaIN.Panel2.SuspendLayout();
@@ -361,11 +362,23 @@
             this.label1.Text = "DVB Subtitle Explorer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // checkBoxShowObjectBorder
+            // 
+            this.checkBoxShowObjectBorder.AutoSize = true;
+            this.checkBoxShowObjectBorder.Location = new System.Drawing.Point(458, 45);
+            this.checkBoxShowObjectBorder.Name = "checkBoxShowObjectBorder";
+            this.checkBoxShowObjectBorder.Size = new System.Drawing.Size(126, 17);
+            this.checkBoxShowObjectBorder.TabIndex = 8;
+            this.checkBoxShowObjectBorder.Text = "Show Object Borders";
+            this.checkBoxShowObjectBorder.UseVisualStyleBackColor = true;
+            this.checkBoxShowObjectBorder.CheckedChanged += new System.EventHandler(this.checkBoxShowObjectBorder_CheckedChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 546);
+            this.Controls.Add(this.checkBoxShowObjectBorder);
             this.Controls.Add(this.panelAbout);
             this.Controls.Add(this.buttonOpenFile);
             this.Controls.Add(this.checkBoxCreateHTML);
@@ -420,6 +433,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabelStreaGuru;
         private System.Windows.Forms.LinkLabel linkLabelDvbAnalyser;
+        private System.Windows.Forms.CheckBox checkBoxShowObjectBorder;
     }
 }
 
