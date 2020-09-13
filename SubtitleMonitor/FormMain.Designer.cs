@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.buttonTestFile1 = new System.Windows.Forms.Button();
-            this.buttonTestFile2 = new System.Windows.Forms.Button();
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.splitContainerMaIN = new System.Windows.Forms.SplitContainer();
             this.splitContainerDetails = new System.Windows.Forms.SplitContainer();
@@ -67,28 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).BeginInit();
             this.panelAbout.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // buttonTestFile1
-            // 
-            this.buttonTestFile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTestFile1.Location = new System.Drawing.Point(828, 41);
-            this.buttonTestFile1.Name = "buttonTestFile1";
-            this.buttonTestFile1.Size = new System.Drawing.Size(109, 23);
-            this.buttonTestFile1.TabIndex = 2;
-            this.buttonTestFile1.Text = "Test File 1";
-            this.buttonTestFile1.UseVisualStyleBackColor = true;
-            this.buttonTestFile1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // buttonTestFile2
-            // 
-            this.buttonTestFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTestFile2.Location = new System.Drawing.Point(943, 41);
-            this.buttonTestFile2.Name = "buttonTestFile2";
-            this.buttonTestFile2.Size = new System.Drawing.Size(109, 23);
-            this.buttonTestFile2.TabIndex = 3;
-            this.buttonTestFile2.Text = "Test File 2";
-            this.buttonTestFile2.UseVisualStyleBackColor = true;
-            this.buttonTestFile2.Click += new System.EventHandler(this.button2_Click);
             // 
             // treeViewMain
             // 
@@ -220,7 +196,7 @@
             // checkBoxCreateHTML
             // 
             this.checkBoxCreateHTML.AutoSize = true;
-            this.checkBoxCreateHTML.Location = new System.Drawing.Point(258, 45);
+            this.checkBoxCreateHTML.Location = new System.Drawing.Point(12, 45);
             this.checkBoxCreateHTML.Name = "checkBoxCreateHTML";
             this.checkBoxCreateHTML.Size = new System.Drawing.Size(149, 17);
             this.checkBoxCreateHTML.TabIndex = 1;
@@ -365,7 +341,7 @@
             // checkBoxShowObjectBorder
             // 
             this.checkBoxShowObjectBorder.AutoSize = true;
-            this.checkBoxShowObjectBorder.Location = new System.Drawing.Point(458, 45);
+            this.checkBoxShowObjectBorder.Location = new System.Drawing.Point(258, 45);
             this.checkBoxShowObjectBorder.Name = "checkBoxShowObjectBorder";
             this.checkBoxShowObjectBorder.Size = new System.Drawing.Size(126, 17);
             this.checkBoxShowObjectBorder.TabIndex = 8;
@@ -384,8 +360,6 @@
             this.Controls.Add(this.checkBoxCreateHTML);
             this.Controls.Add(this.progressBarLoading);
             this.Controls.Add(this.splitContainerMaIN);
-            this.Controls.Add(this.buttonTestFile2);
-            this.Controls.Add(this.buttonTestFile1);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DVB Subtitle Explorer";
@@ -407,9 +381,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonTestFile1;
-        private System.Windows.Forms.Button buttonTestFile2;
         private System.Windows.Forms.TreeView treeViewMain;
         private System.Windows.Forms.SplitContainer splitContainerMaIN;
         private System.Windows.Forms.ListView listViewDetails;

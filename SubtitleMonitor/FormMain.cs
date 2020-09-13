@@ -14,9 +14,15 @@ namespace SubtitleMonitor
 {
     public partial class FormMain : Form
     {
+
+        const string TITLEBAR = "DVB Subtitle Explorer";
+        string _currentFile = "";
+
         public FormMain()
         {
             InitializeComponent();
+
+            this.Text = TITLEBAR;
         }
 
         private void DoIt(string Filepath)
@@ -31,6 +37,10 @@ namespace SubtitleMonitor
             this.splitContainerMaIN.Visible = false;
             this.progressBarLoading.Value = this.progressBarLoading.Minimum;
             this.progressBarLoading.Visible = true;
+
+            _currentFile = Filepath;
+
+            this.Text = TITLEBAR + " - Opening " + _currentFile;
 
             // run in background
             BackGroundWorkerInitInfo initInfo = new BackGroundWorkerInitInfo { SourceFile = Filepath, CreateHtmlFiles = this.checkBoxCreateHTML.Checked };
@@ -150,14 +160,11 @@ namespace SubtitleMonitor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string fileName = @"C:\Video\HBO-Hungary-20200903.ts";
-            DoIt(fileName);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string fileName = @"C:\Video\HBO-Encoders\232_250_1_8.ts";
-            DoIt(fileName);
         }
 
         private void treeViewMain_AfterSelect(object sender, TreeViewEventArgs e)
@@ -296,6 +303,8 @@ namespace SubtitleMonitor
             this.splitContainerMaIN.Visible = true;
             this.progressBarLoading.Value = this.progressBarLoading.Minimum;
             this.panelAbout.Visible = false;
+
+            this.Text = TITLEBAR + " - " + _currentFile;
         }
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
