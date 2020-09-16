@@ -148,7 +148,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             Utils.AddListViewEntry(
                 Lv,
                 "region_id",
-                RegionVersionNumber.ToString(),
+                RegionId.ToString(),
                 "This 8-bit field uniquely identifies the region for which information is contained in this region_composition_segment.",
                 grpGeneral
             );
@@ -156,7 +156,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             Utils.AddListViewEntry(
                 Lv,
                 "region_version_number",
-                RegionId.ToString(),
+                RegionVersionNumber.ToString(),
                 "This indicates the version of this region. The version number is incremented (modulo 16)",
                 grpGeneral
             );

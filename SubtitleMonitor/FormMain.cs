@@ -158,15 +158,6 @@ namespace SubtitleMonitor
             this.progressBarLoading.Value = percent;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-        }
-
         private void treeViewMain_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeViewItemChange();
@@ -181,57 +172,46 @@ namespace SubtitleMonitor
 
                 if (this.treeViewMain.SelectedNode.Tag != null)
                 {
+                    bool getParentBitmap = true;
                     string tagType = this.treeViewMain.SelectedNode.Tag.GetType().ToString();
                     switch (tagType)
                     {
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.PageCompositionSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((PageCompositionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.RegionCompositionSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((RegionCompositionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.ClutDefinitionSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((ClutDefinitionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.ObjectDataSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((ObjectDataSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DisplayDefinitionSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((DisplayDefinitionSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.EndOfDisplaySetSegment":
-                            SwitchDetailsDescriptionFrame(false);
                             ((EndOfDisplaySetSegment)this.treeViewMain.SelectedNode.Tag).PopulateListViewDetails(this.listViewDetails);
                             break;
-                        //case "System.Drawing.Bitmap":
-                        //    SwitchDetailsDescriptionFrame(true);
-                        //    this.listViewDetails.Items.Clear();
-                        //    Bitmap tmp = (Bitmap)this.treeViewMain.SelectedNode.Tag;
-
-                        //    this.pictureBoxSubs.Image = tmp;
-
-                        //    break;
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DvbSubPes":
-                            SwitchDetailsDescriptionFrame(true);
                             this.listViewDetails.Items.Clear();
                             DvbSubPes tmp2 = (DvbSubPes)this.treeViewMain.SelectedNode.Tag;
 
-                            Image old = this.pictureBoxSubs.Image;
-                            this.pictureBoxSubs.Image = tmp2.GetImageFull(this.checkBoxShowObjectBorder.Checked);
-                            if (old != null)
-                            {
-                                old.Dispose();
-                            }
+                            PopulateImage(tmp2);
+
                             break;
                         default:
+                            getParentBitmap = false;
                             Console.WriteLine("Unknown Segment Type");
                             this.listViewDetails.Items.Clear();
                             break;
+                    }
+
+                    if ((getParentBitmap) && (this.treeViewMain.SelectedNode.Parent.Tag != null))
+                    {
+                        DvbSubPes tmp2 = (DvbSubPes)this.treeViewMain.SelectedNode.Parent.Tag;
+                        PopulateImage(tmp2);
                     }
                 }
                 else
@@ -245,20 +225,38 @@ namespace SubtitleMonitor
             } 
         }
 
-        private void SwitchDetailsDescriptionFrame(bool ShowImage = false)
+        private void PopulateImage(DvbSubPes PesPayload)
         {
-            this.pictureBoxSubs.Visible = ShowImage;
-            this.textBoxDesc.Visible = !ShowImage;
+            Image old = this.pictureBoxSubs.Image;
+
+            // build an image to hold the image, then add the image over
+
+            Image subImage = PesPayload.GetImageFull(this.checkBoxShowObjectBorder.Checked);
+
+            //Image framedImage = new Bitmap(subImage.Width + 2, subImage.Height + 2);
+
+            //Graphics g = Graphics.FromImage(framedImage);
+            //g.DrawImage(subImage, 1, 1);
+
+            //this.pictureBoxSubs.Image = g
+            this.pictureBoxSubs.Image = subImage;
+
+            if (old != null)
+            {
+                old.Dispose();
+            }
         }
 
         private void listViewDetails_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             if (this.listViewDetails.SelectedItems.Count < 1)
             {
+                // this.textBoxDesc.Visible = false;
                 this.textBoxDesc.Text = "";
             }
             else
             {
+                // this.textBoxDesc.Visible = true;
                 this.textBoxDesc.Text = this.listViewDetails.SelectedItems[0].SubItems[2].Text;
             }
         }
