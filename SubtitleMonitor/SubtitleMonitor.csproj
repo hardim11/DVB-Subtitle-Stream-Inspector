@@ -10,7 +10,7 @@
     <AssemblyName>SubtitleMonitor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -57,10 +57,19 @@
     <ManifestKeyFile>SubtitleMonitor_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SubTextIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,6 +89,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackGroundWorkerInitInfo.cs" />
+    <Compile Include="cinegy\Buffers\RingBuffer.cs" />
+    <Compile Include="cinegy\Tables\EventInformationTable.cs" />
+    <Compile Include="cinegy\Tables\EventInformationTableFactory.cs" />
+    <Compile Include="cinegy\Tables\ITable.cs" />
+    <Compile Include="cinegy\Tables\NetworkInformationTable.cs" />
+    <Compile Include="cinegy\Tables\NetworkInformationTableFactory.cs" />
+    <Compile Include="cinegy\Tables\ProgramAssociationTable.cs" />
+    <Compile Include="cinegy\Tables\ProgramAssociationTableFactory.cs" />
+    <Compile Include="cinegy\Tables\ProgramMapTable.cs" />
+    <Compile Include="cinegy\Tables\ProgramMapTableFactory.cs" />
+    <Compile Include="cinegy\Tables\ServiceDescriptionTable.cs" />
+    <Compile Include="cinegy\Tables\ServiceDescriptionTableFactory.cs" />
+    <Compile Include="cinegy\Tables\SpliceInfoTable.cs" />
+    <Compile Include="cinegy\Tables\SpliceInfoTableFactory.cs" />
+    <Compile Include="cinegy\Tables\Table.cs" />
+    <Compile Include="cinegy\Tables\TableFactory.cs" />
+    <Compile Include="cinegy\Tables\TdtTable.cs" />
+    <Compile Include="cinegy\Tables\TdtTableFactory.cs" />
+    <Compile Include="cinegy\TransportStream\CinegyDescriptor.cs" />
+    <Compile Include="cinegy\TransportStream\Descriptor.cs" />
+    <Compile Include="cinegy\TransportStream\DescriptorDictionaries.cs" />
+    <Compile Include="cinegy\TransportStream\Dsmcc.cs" />
+    <Compile Include="cinegy\TransportStream\DsmccFactory.cs" />
+    <Compile Include="cinegy\TransportStream\ElementaryStreamTypes.cs" />
+    <Compile Include="cinegy\TransportStream\EsInfo.cs" />
+    <Compile Include="cinegy\TransportStream\PES.cs" />
+    <Compile Include="cinegy\TransportStream\TableChangedEventArgs.cs" />
+    <Compile Include="cinegy\TransportStream\Text.cs" />
+    <Compile Include="cinegy\TransportStream\TransportStreamEventArgs.cs" />
+    <Compile Include="cinegy\TransportStream\TsDecoder.cs" />
+    <Compile Include="cinegy\TransportStream\TsPacket.cs" />
+    <Compile Include="cinegy\TransportStream\TsPacketFactory.cs" />
+    <Compile Include="cinegy\TransportStream\Utils.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +129,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="IsoCountryCodes.cs" />
+    <Compile Include="NameOf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubtitleEdit\CharUtils.cs" />
@@ -178,6 +221,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -203,6 +247,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SubTextIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

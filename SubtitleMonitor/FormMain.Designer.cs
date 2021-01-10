@@ -28,22 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.treeViewMain = new System.Windows.Forms.TreeView();
             this.splitContainerMaIN = new System.Windows.Forms.SplitContainer();
             this.splitContainerDetails = new System.Windows.Forms.SplitContainer();
+            this.splitContainerNotes = new System.Windows.Forms.SplitContainer();
             this.listViewDetails = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBoxDesc = new System.Windows.Forms.TextBox();
             this.panelDescripton = new System.Windows.Forms.Panel();
             this.pictureBoxSubs = new System.Windows.Forms.PictureBox();
-            this.textBoxDesc = new System.Windows.Forms.TextBox();
             this.progressBarLoading = new System.Windows.Forms.ProgressBar();
             this.backgroundWorkerMain = new System.ComponentModel.BackgroundWorker();
             this.checkBoxCreateHTML = new System.Windows.Forms.CheckBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.panelAbout = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.linkLabelStreaGuru = new System.Windows.Forms.LinkLabel();
             this.linkLabelDvbAnalyser = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,8 +56,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxShowObjectBorder = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.splitContainerNotes = new System.Windows.Forms.SplitContainer();
+            this.imageListTreeView = new System.Windows.Forms.ImageList(this.components);
+            this.labelTtext = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).BeginInit();
             this.splitContainerMaIN.Panel1.SuspendLayout();
             this.splitContainerMaIN.Panel2.SuspendLayout();
@@ -63,18 +66,19 @@
             this.splitContainerDetails.Panel1.SuspendLayout();
             this.splitContainerDetails.Panel2.SuspendLayout();
             this.splitContainerDetails.SuspendLayout();
-            this.panelDescripton.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).BeginInit();
-            this.panelAbout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerNotes)).BeginInit();
             this.splitContainerNotes.Panel1.SuspendLayout();
             this.splitContainerNotes.Panel2.SuspendLayout();
             this.splitContainerNotes.SuspendLayout();
+            this.panelDescripton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).BeginInit();
+            this.panelAbout.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewMain
             // 
             this.treeViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewMain.HideSelection = false;
             this.treeViewMain.Location = new System.Drawing.Point(0, 0);
             this.treeViewMain.Name = "treeViewMain";
@@ -120,6 +124,25 @@
             this.splitContainerDetails.SplitterDistance = 309;
             this.splitContainerDetails.TabIndex = 2;
             // 
+            // splitContainerNotes
+            // 
+            this.splitContainerNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerNotes.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainerNotes.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerNotes.Name = "splitContainerNotes";
+            this.splitContainerNotes.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerNotes.Panel1
+            // 
+            this.splitContainerNotes.Panel1.Controls.Add(this.listViewDetails);
+            // 
+            // splitContainerNotes.Panel2
+            // 
+            this.splitContainerNotes.Panel2.Controls.Add(this.textBoxDesc);
+            this.splitContainerNotes.Size = new System.Drawing.Size(690, 309);
+            this.splitContainerNotes.SplitterDistance = 241;
+            this.splitContainerNotes.TabIndex = 1;
+            // 
             // listViewDetails
             // 
             this.listViewDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -153,8 +176,18 @@
             this.columnHeader3.Text = "Information";
             this.columnHeader3.Width = 300;
             // 
+            // textBoxDesc
+            // 
+            this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxDesc.Location = new System.Drawing.Point(0, 0);
+            this.textBoxDesc.Multiline = true;
+            this.textBoxDesc.Name = "textBoxDesc";
+            this.textBoxDesc.Size = new System.Drawing.Size(690, 64);
+            this.textBoxDesc.TabIndex = 0;
+            // 
             // panelDescripton
             // 
+            this.panelDescripton.Controls.Add(this.labelTtext);
             this.panelDescripton.Controls.Add(this.pictureBoxSubs);
             this.panelDescripton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDescripton.Location = new System.Drawing.Point(0, 0);
@@ -172,15 +205,6 @@
             this.pictureBoxSubs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSubs.TabIndex = 1;
             this.pictureBoxSubs.TabStop = false;
-            // 
-            // textBoxDesc
-            // 
-            this.textBoxDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDesc.Location = new System.Drawing.Point(0, 0);
-            this.textBoxDesc.Multiline = true;
-            this.textBoxDesc.Name = "textBoxDesc";
-            this.textBoxDesc.Size = new System.Drawing.Size(690, 64);
-            this.textBoxDesc.TabIndex = 0;
             // 
             // progressBarLoading
             // 
@@ -238,6 +262,19 @@
             this.panelAbout.Name = "panelAbout";
             this.panelAbout.Size = new System.Drawing.Size(1040, 464);
             this.panelAbout.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(248, 251);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(542, 31);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "The field descriptions shown in the application are from this document and copyri" +
+    "ght is owned by the DVB organisation.";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkLabelStreaGuru
             // 
@@ -355,40 +392,29 @@
             this.checkBoxShowObjectBorder.UseVisualStyleBackColor = true;
             this.checkBoxShowObjectBorder.CheckedChanged += new System.EventHandler(this.checkBoxShowObjectBorder_CheckedChanged);
             // 
-            // label5
+            // imageListTreeView
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(248, 251);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(542, 31);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "The field descriptions shown in the application are from this document and copyri" +
-    "ght is owned by the DVB organisation.";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.imageListTreeView.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageListTreeView.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListTreeView.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // splitContainerNotes
+            // labelTtext
             // 
-            this.splitContainerNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerNotes.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainerNotes.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerNotes.Name = "splitContainerNotes";
-            this.splitContainerNotes.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainerNotes.Panel1
-            // 
-            this.splitContainerNotes.Panel1.Controls.Add(this.listViewDetails);
-            // 
-            // splitContainerNotes.Panel2
-            // 
-            this.splitContainerNotes.Panel2.Controls.Add(this.textBoxDesc);
-            this.splitContainerNotes.Size = new System.Drawing.Size(690, 309);
-            this.splitContainerNotes.SplitterDistance = 241;
-            this.splitContainerNotes.TabIndex = 1;
+            this.labelTtext.BackColor = System.Drawing.Color.Black;
+            this.labelTtext.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTtext.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTtext.ForeColor = System.Drawing.Color.White;
+            this.labelTtext.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelTtext.Location = new System.Drawing.Point(0, 0);
+            this.labelTtext.Name = "labelTtext";
+            this.labelTtext.Size = new System.Drawing.Size(690, 151);
+            this.labelTtext.TabIndex = 2;
+            this.labelTtext.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelTtext.Visible = false;
             // 
             // FormMain
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1064, 546);
@@ -398,9 +424,12 @@
             this.Controls.Add(this.progressBarLoading);
             this.Controls.Add(this.splitContainerMaIN);
             this.Controls.Add(this.panelAbout);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DVB Subtitle Explorer";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FormMain_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FormMain_DragEnter);
             this.splitContainerMaIN.Panel1.ResumeLayout(false);
             this.splitContainerMaIN.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMaIN)).EndInit();
@@ -409,14 +438,14 @@
             this.splitContainerDetails.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerDetails)).EndInit();
             this.splitContainerDetails.ResumeLayout(false);
-            this.panelDescripton.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).EndInit();
-            this.panelAbout.ResumeLayout(false);
             this.splitContainerNotes.Panel1.ResumeLayout(false);
             this.splitContainerNotes.Panel2.ResumeLayout(false);
             this.splitContainerNotes.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerNotes)).EndInit();
             this.splitContainerNotes.ResumeLayout(false);
+            this.panelDescripton.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubs)).EndInit();
+            this.panelAbout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +478,8 @@
         private System.Windows.Forms.CheckBox checkBoxShowObjectBorder;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.SplitContainer splitContainerNotes;
+        private System.Windows.Forms.ImageList imageListTreeView;
+        private System.Windows.Forms.Label labelTtext;
     }
 }
 

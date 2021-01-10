@@ -153,7 +153,7 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             }
 
             // offset all time codes if first timestamp in ts file is > 1 sec
-            timestamp = teletextRunSettings.SubtractStartMs(timestamp);
+         //MH   timestamp = teletextRunSettings.SubtractStartMs(timestamp);
 
             if (timestamp < 40)
             {

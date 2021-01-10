@@ -1,4 +1,5 @@
-﻿using Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream;
+﻿using Nikse.SubtitleEdit.Core;
+using Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,9 +65,7 @@ namespace SubtitleMonitor
                 {
                     TreeNode pesNode = pidNode.Nodes.Add("PTS " + aDvbPes.PresentationTimestampToString() + " (" +  aDvbPes.SubtitleSegments.Count.ToString() + " segments)");
 
-                    // add the bitmap?
-                    // this causes a huge memory footprint, need a better way
-                    //pesNode.Tag = aDvbPes.GetImageFull();
+                    // add the PES object, bitmap creates a huge memeory footprint and better to build bitmap on selection only.
                     pesNode.Tag = aDvbPes;
 
                     foreach (SubtitleSegment aSubtitleSegment in aDvbPes.SubtitleSegments)
@@ -101,6 +100,26 @@ namespace SubtitleMonitor
                     }
                 }
             }
+
+            foreach (KeyValuePair<int, SortedDictionary<int, List<Paragraph>>> aPid in TsParser.TeletextSubtitlesLookup)
+            {
+                TreeNode pidNode = this.treeViewMain.Nodes.Add("PID " + aPid.Key.ToString());
+                foreach (KeyValuePair<int, List<Paragraph>> item in aPid.Value)
+                {
+                    TreeNode pidTeletextPage = pidNode.Nodes.Add("Page " + item.Key.ToString());
+                    foreach (Paragraph aParagraph in item.Value)
+                    {
+                        TreeNode nodeParagram = pidTeletextPage.Nodes.Add(aParagraph.StartTime.ToString() + " - " + aParagraph.EndTime.ToString());
+                        nodeParagram.Tag = aParagraph;
+                    }
+                }
+            }
+        }
+
+        private void ShowSubsPanels(bool DvbBitmap, bool Teletext)
+        {
+            this.pictureBoxSubs.Visible = DvbBitmap;
+            this.labelTtext.Visible = Teletext;
         }
 
         private string GetHtmlPid(KeyValuePair<int, List<DvbSubPes>> SubtitlePid)
@@ -140,8 +159,6 @@ namespace SubtitleMonitor
                             Console.WriteLine("Unknown Segment Type");
                             break;
                     }
-
-
                     res += "</td></tr>\r\n";
                 }
                 res += "</table></td>";
@@ -197,9 +214,16 @@ namespace SubtitleMonitor
                         case "Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream.DvbSubPes":
                             this.listViewDetails.Items.Clear();
                             DvbSubPes tmp2 = (DvbSubPes)this.treeViewMain.SelectedNode.Tag;
-
                             PopulateImage(tmp2);
+                            break;
+                        case "Nikse.SubtitleEdit.Core.Paragraph":
 
+                            // clear details
+
+                            // show subtitle page
+                            Console.WriteLine("Nikse.SubtitleEdit.Core.Paragraph");
+                            Nikse.SubtitleEdit.Core.Paragraph tmp3 = (Nikse.SubtitleEdit.Core.Paragraph)this.treeViewMain.SelectedNode.Tag;
+                            PopulateTeletextParagraph(tmp3);
                             break;
                         default:
                             getParentBitmap = false;
@@ -227,6 +251,8 @@ namespace SubtitleMonitor
 
         private void PopulateImage(DvbSubPes PesPayload)
         {
+            ShowSubsPanels(true, false);
+
             Image old = this.pictureBoxSubs.Image;
 
             // build an image to hold the image, then add the image over
@@ -245,6 +271,31 @@ namespace SubtitleMonitor
             {
                 old.Dispose();
             }
+        }
+
+        private void PopulateTeletextParagraph(Nikse.SubtitleEdit.Core.Paragraph PesPayload)
+        {
+            ShowSubsPanels(false, true);
+
+            this.listViewDetails.Items.Clear();
+            ListViewGroup grpGeneral = listViewDetails.Groups.Add("General", "General");
+
+            //Console.WriteLine(PesPayload.ToString());
+
+            //Utils.AddListViewEntry(
+            //    Lv,
+            //    "dds_version_number",
+            //    this.DisplayDefinitionVersionNumber.ToString(),
+            //    "The version of this display definition segment. When any of the contents of this display definition segment change, this version number is incremented(modulo 16).",
+            //    grpGeneral
+            //);
+
+            // populated rich text box
+            Console.WriteLine(PesPayload.Style);
+
+
+            this.labelTtext.Text = PesPayload.Text;
+            
         }
 
         private void listViewDetails_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -354,6 +405,25 @@ namespace SubtitleMonitor
                 {
                     TreeViewItemChange();
                 }
+            }
+        }
+
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files.Length == 1)
+            {
+
+                DoIt(files[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please only drag 1 file");
             }
         }
     }

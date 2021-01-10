@@ -1,4 +1,5 @@
 ﻿//using Nikse.SubtitleEdit.Core.BluRaySup;
+using Cinegy.TsDecoder.TransportStream;
 using Nikse.SubtitleEdit.Core.VobSub;
 using System;
 using System.Collections.Generic;
@@ -62,30 +63,17 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
             ulong? firstMs = null;
             ulong? firstVideoMs = null;
 
-            //// check for Topfield .rec file
-            //ms.Seek(position, SeekOrigin.Begin);
-            //ms.Read(m2TsTimeCodeBuffer, 0, 3);
-            //if (m2TsTimeCodeBuffer[0] == 0x54 && m2TsTimeCodeBuffer[1] == 0x46 && m2TsTimeCodeBuffer[2] == 0x72)
-            //{
-            //    position = 3760;
-            //}
-
             long transportStreamLength = ms.Length;
             ms.Seek(position, SeekOrigin.Begin);
             while (position < transportStreamLength)
             {
-                //if (IsM2TransportStream)
-                //{
-                //    ms.Read(m2TsTimeCodeBuffer, 0, m2TsTimeCodeBuffer.Length);
-                //    position += m2TsTimeCodeBuffer.Length;
-                //}
-
                 var bytesRead = ms.Read(packetBuffer, 0, packetLength);
                 if (bytesRead < packetLength)
                 {
                     break; // incomplete packet at end-of-file
                 }
 
+                // check beginning of TS packet
                 if (packetBuffer[0] == Packet.SynchronizationByte)
                 {
                     var packet = new Packet(packetBuffer);
@@ -93,7 +81,6 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
                     {
                         NumberOfNullPackets++;
                     }
-
                     else if (!firstVideoMs.HasValue && packet.IsVideoStream)
                     {
                         if (packet.Payload != null && packet.Payload.Length > 10)
@@ -111,7 +98,6 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
                             }
                         }
                     }
-
                     else if (packet.IsPrivateStream1 || SubtitlePacketIds.Contains(packet.PacketId))
                     {
                         TotalNumberOfPrivateStream1++;
@@ -133,9 +119,57 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
                             TotalNumberOfPrivateStream1Continuation0++;
                         }
                     }
+                    else
+                    {
+                        // not a subtitle packate (or others)
+
+
+                        // should read PAT and PMT here 
+
+                        if (packet.PacketId == (int)PidType.PatPid)
+                        {
+                            Console.WriteLine("PMT");
+                        }
+
+                        // is it a PMT PID in the PAT we read?
+
+
+                        /*
+                        switch (newPacket.Pid)
+                        {
+                            case (short)PidType.PatPid:
+                                _patFactory.AddPacket(newPacket);
+                                break;
+                            case (short)PidType.SdtPid:
+                                _sdtFactory.AddPacket(newPacket);
+                                break;
+                            //case (short)PidType.EitPid:
+                            //    _eitFactory.AddPacket(newPacket);
+                            //    break;
+                            case 2048:
+                                _sitFactory.AddPacket(newPacket);
+                                break;
+
+                            case (short)PidType.TdtPid:
+                                _tdtFactory.AddPacket(newPacket);
+                                break;
+
+                            default:
+                                CheckPmt(newPacket);
+                                break;
+                        }
+
+                        */
+
+
+
+
+                    }
+
                     TotalNumberOfPackets++;
                     position += packetLength;
 
+                    // trigger progress callback
                     if (TotalNumberOfPackets % 100000 == 0)
                     {
                         callback?.Invoke(position, transportStreamLength);
@@ -143,18 +177,15 @@ namespace Nikse.SubtitleEdit.Core.ContainerFormats.TransportStream
                 }
                 else
                 {
-                    //// sync byte not found - search for it (will be very slow!)
-                    //if (IsM2TransportStream)
-                    //{
-                    //    position -= m2TsTimeCodeBuffer.Length;
-                    //}
+                    // sync byte not found - search for it (will be very slow!)
                     position++;
                     ms.Seek(position, SeekOrigin.Begin);
                 }
             }
 
 
-
+            //////////////////// now decode the packets
+            ///
             foreach (var pid in SubtitlePackets.GroupBy(p => p.PacketId))
             {
                 firstMs = ProcessPackages(pid.Key, teletextPages, teletextPesList, firstMs);
